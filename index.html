@@ -27,6 +27,10 @@ one blinded oneself that one might walk with more safety in a land of pit and pr
 			 var ls_w = 20, ls_h = 20;
 			 var diaGlob = 'Mon';
 			 var horaGlob = '[0-4)';
+			 var diasConver = {Mon: 'lunes', Tue: 'martes',
+							   Wen: 'miércoles', Thu:'jueves',
+							   Fri: 'viernes', Sat: 'sábado',
+							   Sun: 'domingo'}
 			 var HoraInt = ['[0-4)', '[4-8)', '[8-12)',
 							'[12- 16)', '[16-20)', '[20-24)']
 			 var hora = svg.selectAll('g')
@@ -63,7 +67,7 @@ one blinded oneself that one might walk with more safety in a land of pit and pr
 				 .text(function(d) { 
 					 return d;});
 			 var diasSem = ['Mon', 'Tue', 'Wen', 'Thu', 'Fri',
-							'Sat', 'Sun'];
+							'Sat', 'Sun', 'Play'];
 			 var dias = svg.selectAll('g.rectangle')
 						   .data(diasSem)
 						   .enter()
@@ -77,29 +81,42 @@ one blinded oneself that one might walk with more safety in a land of pit and pr
 				 .attr("width", 110)
 				 .attr("height", ls_h)
 				 .attr('class', 'rectangle')
+				 .attr('id', function(d){
+					 return d;})
 				 .attr('dy', '.35em')
 				 .on('click', function(d){
-					 d3.selectAll('rect.rectangle').transition()
-					   .duration(300)
-					   .style("fill", "#333");
-					 d3.select(this).transition().duration(300)
-					   .style("fill", "#FFD700");
-					 diaGlob = d;
-					 var hour_index = 0;
-					 var colorHour = setInterval(function(){
-						 horaGlob = HoraInt[hour_index]
-						 d3.selectAll('rect.rectangleH').
-							transition().duration(300)
-						   .style('fill', '#333');
-						 d3.selectAll('#' +'Hora'+ hour_index)
-						   .transition().duration(300)
-						   .style('fill', '#FFD700');
+					 if(d != 'Play'){
+						 d3.selectAll('rect.rectangle').transition()
+						   .duration(300)
+						   .style("fill", "#333");
+						 d3.select(this).transition().duration(300)
+						   .style("fill", "#FFD700");
+						 diaGlob = d;
 						 printMap();
-						 hour_index++;
-						 if(hour_index >= HoraInt.length){
-							 clearInterval(colorHour);
-						 }
-					 }, 1000);
+					 }
+					 if(d == 'Play'){
+						 d3.selectAll('rect.rectangle').transition()
+						   .duration(300)
+						   .style("fill", "#333");
+						 d3.select('rect#' + diaGlob).
+							transition().duration(300)
+						   .style("fill", "#FFD700");
+						 var hour_index = 0;
+						 var colorHour = setInterval(function(){
+							 horaGlob = HoraInt[hour_index]
+							 d3.selectAll('rect.rectangleH').
+								transition().duration(300)
+							   .style('fill', '#333');
+							 d3.selectAll('#' +'Hora'+ hour_index)
+							   .transition().duration(300)
+							   .style('fill', '#FFD700');
+							 printMap();
+							 hour_index++;
+							 if(hour_index >= HoraInt.length){
+								 clearInterval(colorHour);
+							 }
+						 }, 1000);
+					 }
 				 });
 			 dias.append('text')
 				 .attr('x', 20)
@@ -140,12 +157,7 @@ one blinded oneself that one might walk with more safety in a land of pit and pr
 					   return (i*ls_h) + 1*ls_h;})
 				   .text(function(d, i){
 					   return legend_labels[i]; });
-			 var div = d3.select("body").append("div")   
-						 .attr("class", "tooltip")               
-						 .style("opacity", 0);
 			 d3.json('Data/localidades_bogota.geojson', draw);
-
-			 
 			</script>
 	</body>
 </html>
