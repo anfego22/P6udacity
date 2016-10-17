@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<script src="https://d3js.org/d3.v3.js"></script>
+		<script src="drawMap.js"></script>
+		<script src="functions.js"></script>
+		<title> Bogota </title>
+		<LINK href="mapsStyle.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<h1><blockquote><pre>To shut one's eyes to half of life that one may live securely is as though
+one blinded oneself that one might walk with more safety in a land of pit and precipice.</pre></blockquote></h1>
+			<h1><blockquote>Oscar Wilde</blockquote></h1>
+			<script type="text/javascript">
+			 var margin = {top: 10, right: 10,
+						   bottom: 10, left: 10};
+			 var height = 1020 - margin.top - margin.bottom;
+			 var width = 1000 - margin.right - margin.left;
+			 var svg = d3.select('body')
+						 .append('svg')
+						 .attr('width', width + margin.right +
+										margin.left)
+						 .attr('height', height + margin.top +
+										 margin.bottom)
+						 .append('g');
+			 var ls_w = 20, ls_h = 20;
+			 var diaGlob = 'Mon';
+			 var horaGlob = '[0-4)';
+			 var HoraInt = ['[0-4)', '[4-8)', '[8-12)',
+							'[12- 16)', '[16-20)', '[20-24)']
+			 var hora = svg.selectAll('g')
+						   .data(HoraInt)
+						   .enter()
+						   .append('g')
+						   .attr('transform', function(d, i){
+							   return 'translate(150, ' +
+									  i*20 +
+									  ')';
+						   });
+			 hora.append('rect')
+				 .attr("width", 110)
+				 .attr("height", ls_h)
+				 .attr('class', 'rectangleH')
+				 .attr('dy', '.35em')
+				 .attr('id', function(d, i){
+					 return 'Hora' + i;})
+				 .on('click', function(d){
+					 d3.selectAll('rect.rectangleH').transition()
+					   .duration(300)
+					   .style("fill", "#333");
+					 d3.select(this).transition().duration(300)
+					   .style("fill", "#FFD700");
+					 horaGlob = d;
+					 printMap();
+				 });
+			 hora.append('text')
+				 .attr('x', 20)
+				 .attr('y', 15)
+				 .attr('width', ls_w)
+				 .attr('heigth', ls_h)
+				 .attr('fill', 'white')
+				 .text(function(d) { 
+					 return d;});
+			 var diasSem = ['Mon', 'Tue', 'Wen', 'Thu', 'Fri',
+							'Sat', 'Sun'];
+			 var dias = svg.selectAll('g.rectangle')
+						   .data(diasSem)
+						   .enter()
+						   .append('g')
+						   .attr('transform', function(d, i){
+							   return 'translate(0, ' +
+									  i*20 +
+									  ')';
+						   });
+			 dias.append('rect')
+				 .attr("width", 110)
+				 .attr("height", ls_h)
+				 .attr('class', 'rectangle')
+				 .attr('dy', '.35em')
+				 .on('click', function(d){
+					 d3.selectAll('rect.rectangle').transition()
+					   .duration(300)
+					   .style("fill", "#333");
+					 d3.select(this).transition().duration(300)
+					   .style("fill", "#FFD700");
+					 diaGlob = d;
+					 var hour_index = 0;
+					 var colorHour = setInterval(function(){
+						 horaGlob = HoraInt[hour_index]
+						 d3.selectAll('rect.rectangleH').
+							transition().duration(300)
+						   .style('fill', '#333');
+						 d3.selectAll('#' +'Hora'+ hour_index)
+						   .transition().duration(300)
+						   .style('fill', '#FFD700');
+						 printMap();
+						 hour_index++;
+						 if(hour_index >= HoraInt.length){
+							 clearInterval(colorHour);
+						 }
+					 }, 1000);
+				 });
+			 dias.append('text')
+				 .attr('x', 20)
+				 .attr('y', 15)
+				 .attr('width', ls_w)
+				 .attr('heigth', ls_h)
+				 .attr('fill', 'white')
+				 .text(function(d) { 
+					 return d;});
+			 var homRan = [5, 10, 20, 50, 100, 150, 200];
+			 var legend_labels = ["< 5", "(5 -10]",
+								  "(10 - 20]", "(20 - 50]",
+								  "(50 - 100]", "(100 - 150]",
+								  "> 200"];
+			 var colrRan = ['#ffffe0','#ffd59b','#ffa474',
+							'#f47461', '#db4551','#b81b34',
+							'#8b0000'];
+			 var colors = d3.scale.threshold()
+							.domain(homRan)
+							.range(colrRan);
+			 var legend = svg.selectAll("g.legend")
+							 .data(homRan)
+							 .enter().append("g")
+							 .attr("class", "legend");
+			 var ls_w = 20, ls_h = 20;
+			 legend.append("rect")
+				   .attr("x", width - 150)
+				   .attr("y", function(d, i){
+					   return (i*ls_h) + 0*ls_h;})
+				   .attr("width", ls_w)
+				   .attr("height", ls_h)
+				   .style("fill", function(d, i) {
+					   return colors(d); })
+				   .style("opacity", 0.8);
+			 legend.append("text")
+				   .attr("x", width-120)
+				   .attr("y", function(d, i){
+					   return (i*ls_h) + 1*ls_h;})
+				   .text(function(d, i){
+					   return legend_labels[i]; });
+			 var div = d3.select("body").append("div")   
+						 .attr("class", "tooltip")               
+						 .style("opacity", 0);
+			 d3.json('Data/localidades_bogota.geojson', draw);
+
+			 
+			</script>
+	</body>
+</html>
+
+
+<!--
+	 Reference
+	 http://stackoverflow.com/questions/19320835/d3-js-how-to-combine-2-datasets-in-order-to-create-a-map-and-show-values-on-mou
+	 http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html	 
+	 http://stackoverflow.com/questions/14492284/center-a-map-in-d3-given-a-geojson-object
+   -->

@@ -1,0 +1,47 @@
+path {
+	fill : snow;
+	stroke-width: 0.5;
+	stroke: gray;
+}
+blockquote, pre {
+	font-family: times, serif;
+	font-size:18pt;
+	font-style:italic; 
+}
+.place-label {
+	font-size: 8pt;
+}
+.legend {
+	font-size: 14pt;
+}
+rectangle {
+	fill: #fff;
+	font-family: Arial;
+	font-size: 18px;
+}
+rectangleH {
+	fill: #fff;
+	font-family: Arial;
+	font-size: 18px;
+}
+textRect {
+	fill : white;
+}
+startAnim {
+	fill: #fff;
+	font-family: Arial;
+	font-size: 18px;
+}
+div.tooltip {   
+  position: absolute;           
+  text-align: center;           
+  width: 60px;                  
+  height: 28px;                 
+  padding: 2px;             
+  font: 12px sans-serif;        
+  background: lightsteelblue;   
+  border: 0px;      
+  border-radius: 8px;           
+  pointer-events: none;         
+}
+
