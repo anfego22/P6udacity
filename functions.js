@@ -4,7 +4,7 @@ function printMap(){
 				  Fri: 'viernes', Sat: 'sábado',
 				  Sun: 'domingo'}
 	dia = diasConver[diaGlob]
-	d3.csv('Data/Bogota.csv', function(crimData){
+	d3.csv('Bogota.csv', function(crimData){
 		crimData = crimData.filter(function(d) {
 			return d.Dia == dia &&
 				d.HoraInt == horaGlob;
@@ -26,4 +26,3 @@ function printMap(){
 			});
 	})
 }
-
