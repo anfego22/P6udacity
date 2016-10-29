@@ -45,3 +45,6 @@ div.tooltip {
   pointer-events: none;         
 }
 
+.title {
+	font-size: 18px;
+}

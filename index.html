@@ -13,6 +13,7 @@
 one blinded oneself that one might walk with more safety in a land of pit and precipice.</pre></blockquote></h1>
 			<h1><blockquote>Oscar Wilde</blockquote></h1>
 			<script type="text/javascript">
+			 var padDia = 35;
 			 var margin = {top: 10, right: 10,
 						   bottom: 10, left: 10};
 			 var height = 1020 - margin.top - margin.bottom;
@@ -39,9 +40,21 @@ one blinded oneself that one might walk with more safety in a land of pit and pr
 						   .append('g')
 						   .attr('transform', function(d, i){
 							   return 'translate(150, ' +
-									  i*20 +
+									  (i*20 + padDia) +
 									  ')';
 						   });
+			 d3.select('svg')
+			   .append('text')
+			   .attr('x', 150)
+			   .attr('y', 25)
+			   .attr('class', 'title')
+			   .text('Time of Day (Hours)');
+			 d3.select('svg')
+			   .append('text')
+			   .attr('x', 10)
+			   .attr('y', 25)
+			   .attr('class', 'title')
+			   .text('Day of Week');
 			 hora.append('rect')
 				 .attr("width", 110)
 				 .attr("height", ls_h)
@@ -68,15 +81,17 @@ one blinded oneself that one might walk with more safety in a land of pit and pr
 					 return d;});
 			 var diasSem = ['Mon', 'Tue', 'Wen', 'Thu', 'Fri',
 							'Sat', 'Sun', 'Play'];
+			 
 			 var dias = svg.selectAll('g.rectangle')
-						   .data(diasSem)
-						   .enter()
-						   .append('g')
-						   .attr('transform', function(d, i){
-							   return 'translate(0, ' +
-									  i*20 +
-									  ')';
-						   });
+						  .data(diasSem)
+						  .enter()
+						  .append('g')
+						  .attr('transform', function(d, i){
+							  return 'translate(0, ' +
+									  (i*20 + padDia) +
+									 ')';
+						  });
+			 
 			 dias.append('rect')
 				 .attr("width", 110)
 				 .attr("height", ls_h)
@@ -145,7 +160,7 @@ one blinded oneself that one might walk with more safety in a land of pit and pr
 			 legend.append("rect")
 				   .attr("x", width - 150)
 				   .attr("y", function(d, i){
-					   return (i*ls_h) + 0*ls_h;})
+					   return (i*ls_h) + 30;})
 				   .attr("width", ls_w)
 				   .attr("height", ls_h)
 				   .style("fill", function(d, i) {
@@ -154,10 +169,18 @@ one blinded oneself that one might walk with more safety in a land of pit and pr
 			 legend.append("text")
 				   .attr("x", width-120)
 				   .attr("y", function(d, i){
-					   return (i*ls_h) + 1*ls_h;})
+					   return (i*ls_h) + 49;})
 				   .text(function(d, i){
 					   return legend_labels[i]; });
+			 d3.select('svg')
+			   .append('text')
+			   .attr('x', width -150)
+			   .attr('y', 25)
+			   .attr('class', 'title')
+			   .text('Homicides (#)');
+			 
 			 d3.json('localidades_bogota.geojson', draw);
+
 			</script>
 	</body>
 </html>
