@@ -161,9 +161,8 @@ one blinded oneself that one might walk with more safety in a land of pit and pr
 				 .attr("height", ls_h)
 				 .attr('class', 'rectangleP')
 				 .on('click', function(d){
-					 playMap();
+					 playMap(1000);
 				 });
-			 
 			 play.append('text')
 				 .attr('x', 20)
 				 .attr('y', 15)
@@ -171,9 +170,8 @@ one blinded oneself that one might walk with more safety in a land of pit and pr
 				 .attr('width', ls_w)
 				 .attr('heigth', ls_h)
 				 .text('Play');
-			 
 			 d3.json('localidades_bogota.geojson', draw);
-
+			 playAll(600);
 			</script>
 	</body>
 </html>

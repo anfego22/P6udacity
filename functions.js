@@ -27,7 +27,7 @@ function printMap(){
 	})
 }
 
-function playMap(){
+function playMap(dur){
 	d3.selectAll('rect.rectangle').transition()
 		.duration(300)
 		.style("fill", "#333");
@@ -48,6 +48,19 @@ function playMap(){
 		if(hour_index >= HoraInt.length){
 			clearInterval(colorHour);
 		}
-	}, 1000);
+	}, dur);
 }
 
+function playAll(dur){
+	var days = ['Mon', 'Tue', 'Wen',
+				'Thu', 'Fri', 'Sat', 'Sun'];
+	day_index = 0;
+	var playS = setInterval(function(){
+		diaGlob = days[day_index];
+		playMap(dur);
+		day_index++;
+		if(day_index >= days.length){
+			clearInterval(playS);
+		}
+	}, dur*7 + 50);
+}
