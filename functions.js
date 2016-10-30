@@ -26,3 +26,28 @@ function printMap(){
 			});
 	})
 }
+
+function playMap(){
+	d3.selectAll('rect.rectangle').transition()
+		.duration(300)
+		.style("fill", "#333");
+	d3.select('rect#' + diaGlob).
+		transition().duration(300)
+		.style("fill", "#FFD700");
+	var hour_index = 0;
+	var colorHour = setInterval(function(){
+		horaGlob = HoraInt[hour_index]
+		d3.selectAll('rect.rectangleH').
+			transition().duration(300)
+			.style('fill', '#333');
+		d3.selectAll('#' +'Hora'+ hour_index)
+			.transition().duration(300)
+			.style('fill', '#FFD700');
+		printMap();
+		hour_index++;
+		if(hour_index >= HoraInt.length){
+			clearInterval(colorHour);
+		}
+	}, 1000);
+}
+

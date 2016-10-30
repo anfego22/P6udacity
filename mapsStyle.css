@@ -24,6 +24,12 @@ rectangleH {
 	font-family: Arial;
 	font-size: 18px;
 }
+rectangleH {
+	fill: #fff;
+	font-family: Arial;
+	font-size: 18px;
+}
+
 textRect {
 	fill : white;
 }
