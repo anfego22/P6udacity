@@ -1,15 +1,14 @@
-
 function printMap(){
-	diasConver = {Mon: 'lunes', Tue: 'martes',
-				  Wen: 'miércoles', Thu:'jueves',
-				  Fri: 'viernes', Sat: 'sábado',
-				  Sun: 'domingo'}
 	dia = diasConver[diaGlob]
 	d3.csv('Bogota.csv', function(crimData){
+		//Filter data with a specific day
+		// and hour range
 		crimData = crimData.filter(function(d) {
 			return d.Dia == dia &&
 				d.HoraInt == horaGlob;
 		});
+		// Map Number of homicides in each
+		// location with the respective color
 		function getHom(localidad){
 			var hom = crimData.filter(function(d){
 				return d.Localidad == localidad;})
@@ -19,6 +18,8 @@ function printMap(){
 				return 'snow';
 			}
 		}
+		// Add transition when filling the
+		// location
 		svg.selectAll('path')
 			.transition()
 			.delay(100)
@@ -28,10 +29,13 @@ function printMap(){
 	})
 }
 
+
+// Animate all hours of a given day
 function playMap(dur){
 	d3.selectAll('rect.rectangle').transition()
 		.duration(300)
 		.style("fill", "#333");
+	// Select rectangle by id
 	d3.select('rect#' + diaGlob).
 		transition().duration(300)
 		.style("fill", "#FFD700");
@@ -52,6 +56,7 @@ function playMap(dur){
 	}, dur);
 }
 
+// Animate all hours of a all days
 function playAll(dur){
 	var days = ['Mon', 'Tue', 'Wen',
 				'Thu', 'Fri', 'Sat', 'Sun'];
@@ -66,8 +71,7 @@ function playAll(dur){
 	}, dur*7);
 }
 
-// CODE
-
+// Margin and initial setup of page
 var padDia = 35;
 var margin = {top: 10, right: 10,
 			  bottom: 10, left: 10};
@@ -81,23 +85,19 @@ var svg = d3.select('#svgHere')
 		  margin.bottom)
 	.append('g');
 var ls_w = 20, ls_h = 20;
+// Intial day and hour intervals
 var diaGlob = 'Mon';
 var horaGlob = '[0-4)';
+// Map each legend to the proper day
+// in spanish
 var diasConver = {Mon: 'lunes', Tue: 'martes',
 				  Wen: 'miércoles', Thu:'jueves',
 				  Fri: 'viernes', Sat: 'sábado',
 				  Sun: 'domingo'}
 var HoraInt = ['[0-4)', '[4-8)', '[8-12)',
 			   '[12- 16)', '[16-20)', '[20-24)']
-var hora = svg.selectAll('g')
-	.data(HoraInt)
-	.enter()
-	.append('g')
-	.attr('transform', function(d, i){
-		return 'translate(150, ' +
-			(i*20 + padDia) +
-			')';
-	});
+
+// Add title to explain each buttons
 d3.select('svg')
 	.append('text')
 	.attr('x', 150)
@@ -110,6 +110,17 @@ d3.select('svg')
 	.attr('y', 25)
 	.attr('class', 'title')
 	.text('Day of Week');
+
+// Hour buttons
+var hora = svg.selectAll('g')
+	.data(HoraInt)
+	.enter()
+	.append('g')
+	.attr('transform', function(d, i){
+		return 'translate(150, ' +
+			(i*20 + padDia) +
+			')';
+	});
 hora.append('rect')
 	.attr("width", 110)
 	.attr("height", ls_h)
@@ -133,7 +144,17 @@ hora.append('text')
 	.attr('heigth', ls_h)
 	.attr('fill', 'white')
 	.text(function(d) { 
-		return d;});
+		return d;})
+	.on('click', function(d, i){
+		d3.selectAll('rect.rectangleH').transition()
+			.duration(300)
+			.style("fill", "#333");
+		d3.select('rect#' + 'Hora' + i).transition().duration(300)
+			.style("fill", "#FFD700");
+		horaGlob = d;
+		printMap();
+	});
+
 var diasSem = ['Mon', 'Tue', 'Wen', 'Thu', 'Fri',
 			   'Sat', 'Sun'];
 var dias = svg.selectAll('g.rectangle')
@@ -168,7 +189,18 @@ dias.append('text')
 	.attr('heigth', ls_h)
 	.attr('fill', 'white')
 	.text(function(d) { 
-		return d;});
+		return d;})
+	.on('click', function(d){
+		d3.selectAll('rect.rectangle').transition()
+			.duration(300)
+			.style("fill", "#333");
+		d3.select('rect#' + d).transition().duration(300)
+			.style("fill", "#FFD700");
+		diaGlob = d;
+		printMap();
+	});
+
+// Lables and range of colors
 var homRan = [5, 10, 20, 50, 100, 150, 200];
 var legend_labels = ["< 5", "(5 -10]",
 					 "(10 - 20]", "(20 - 50]",
@@ -184,7 +216,6 @@ var legend = svg.selectAll("g.legend")
 	.data(homRan)
 	.enter().append("g")
 	.attr("class", "legend");
-var ls_w = 20, ls_h = 20;
 legend.append("rect")
 	.attr("x", width - 150)
 	.attr("y", function(d, i){
@@ -224,4 +255,4 @@ play.append('text')
 	.attr('heigth', ls_h)
 	.text('Play');
 d3.json('localidades_bogota.geojson', draw);
-playAll(1000);
+//playAll(1000);
