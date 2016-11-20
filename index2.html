@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<script src="https://d3js.org/d3.v3.js"></script>
+		<script src="drawMap.js"></script>
+		<title> Bogota </title>
+		<LINK href="mapsStyle.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<h1><blockquote>To shut one's eyes to half of life that
+			one may live securely is as though
+			one blinded oneself that one might walk with
+			more safety in a land of pit and precipice.
+		</blockquote></h1>
+		<h1><blockquote>Oscar Wilde</blockquote></h1>
+		<div class="grid" >
+			<div class ="row" >
+				<div class="row" >
+					<div id="svgHere"class="col-8">
+						<script src="functions.js"></script>
+					</div>
+				</div>
+				<div class="col-4">
+					<p class="desc">
+						This visualization show the map of 
+						Bogota D.C, Colombia and the total number of
+						homicides in a given day at a given
+						hour.
+					</p>
+					<p class="desc">
+						The data was taken from the 
+						<a href='http://oasportal.policia.gov.co/
+								 imagenes_ponal/dijin/observatorio/cicri/cifras0.html'> police departemnt </a>
+						webpage, for the years 2010 to 2015.
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</body>
+</html>
+
+
+<!--
+	 Reference
+	 http://stackoverflow.com/questions/19320835/d3-js-how-to-combine-2-datasets-in-order-to-create-a-map-and-show-values-on-mou
+	 http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html	 
+	 http://stackoverflow.com/questions/14492284/center-a-map-in-d3-given-a-geojson-object
+   -->

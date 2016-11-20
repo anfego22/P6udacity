@@ -45,7 +45,7 @@ function playMap(dur){
 		d3.selectAll('rect.rectangleH').
 			transition().duration(300)
 			.style('fill', '#333');
-		d3.selectAll('#' +'Hora'+ hour_index)
+		d3.selectAll('#Hora'+ hour_index)
 			.transition().duration(300)
 			.style('fill', '#FFD700');
 		printMap();
@@ -71,6 +71,50 @@ function playAll(dur){
 	}, dur*7);
 }
 
+// playMap function but with specific hour of days
+function playMapEsp(dur){
+	d3.selectAll('rect.rectangle').transition()
+		.duration(300)
+		.style("fill", "#333");
+	// Select rectangle by id
+	d3.select('rect#' + diaGlob).
+		transition().duration(300)
+		.style("fill", "#FFD700");
+	var hour_index = 0;
+	var especificDayHour = {'Fri' : ['[0-4)', '[20-24)'],
+							'Sat' : ['[0-4)', '[4-8)', '[20-24)'],
+							'Sun' : ['[0-4)']};
+	var colorHour = setInterval(function(){
+		horaGlob = especificDayHour[diaGlob][hour_index];
+		d3.selectAll('rect.rectangleH').
+			transition().duration(300)
+			.style('fill', '#333');
+		d3.selectAll('#Hora' + HoraConver[horaGlob])
+			.transition().duration(300)
+			.style('fill', '#FFD700');
+		printMap();
+		hour_index++;
+		if(hour_index >= especificDayHour[diaGlob].length){
+			clearInterval(colorHour);
+		}
+	}, dur);
+}
+
+// Start Animation
+function startAnimation(dur){
+	var dayEsp = ['Fri', 'Sat'];
+	day_index = 0;
+	var playS = setInterval(function(){
+		diaGlob = dayEsp[day_index];
+		// playMap code but with certain hours
+		playMapEsp(dur)
+		day_index++;
+		if(day_index >= dayEsp.length){
+			clearInterval(playS);
+		}
+	}, dur*3);
+}
+
 // Margin and initial setup of page
 var padDia = 35;
 var margin = {top: 10, right: 10,
@@ -88,14 +132,19 @@ var ls_w = 20, ls_h = 20;
 // Intial day and hour intervals
 var diaGlob = 'Mon';
 var horaGlob = '[0-4)';
-// Map each legend to the proper day
-// in spanish
+
+// Map some index i, to an hour
+var HoraConver = {'[0-4)' : 0, '[4-8)' : 1, '[8-12)' : 2,
+				  '[12- 16)' : 3, '[16-20)' : 4,
+				  '[20-24)' : 5};
+// Map text to a specific day the data
 var diasConver = {Mon: 'lunes', Tue: 'martes',
 				  Wen: 'miércoles', Thu:'jueves',
 				  Fri: 'viernes', Sat: 'sábado',
-				  Sun: 'domingo'}
+				  Sun: 'domingo'};
+
 var HoraInt = ['[0-4)', '[4-8)', '[8-12)',
-			   '[12- 16)', '[16-20)', '[20-24)']
+			   '[12- 16)', '[16-20)', '[20-24)'];
 
 // Add title to explain each buttons
 d3.select('svg')
@@ -149,7 +198,7 @@ hora.append('text')
 		d3.selectAll('rect.rectangleH').transition()
 			.duration(300)
 			.style("fill", "#333");
-		d3.select('rect#' + 'Hora' + i).transition().duration(300)
+		d3.select('rect#Hora' + i).transition().duration(300)
 			.style("fill", "#FFD700");
 		horaGlob = d;
 		printMap();
@@ -255,4 +304,4 @@ play.append('text')
 	.attr('heigth', ls_h)
 	.text('Play');
 d3.json('localidades_bogota.geojson', draw);
-//playAll(1000);
+startAnimation(1000)
