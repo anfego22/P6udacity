@@ -4,13 +4,19 @@ It maps the number of homicides in a especifc area of the city, in a given day a
 The data consist of the number of homicides during 2010 to 2015 in Bogota D.C.
 
 # Design
+
+I wanted to have a visualization showing the map of Bogota D.C color by the number of homicides,
+in a given day and in a given hour. I wanted the viewer to know the regions and the hours were
+most of the homicides in the dataset occur.
+
+When I first did it, it wasn't very clear what the visualization was about, so I added some text
+with a brief explanation of the dataset. The problem was that with the single coloplett map,
+I couldn't show a clear finding of the data to the viewer. 
+
 The idea was to let people interact with the buttons to understand how homicides are
 distribute across districts in Bogota and depending of the day and hour of the week.
 I wanted to have a visualization with litle or no text, I wanted the map to be
 self explained so no need to the viewer to read lots of text.
-
-After some feedback I add more explanation to the dataset and include an animation
-at the start so it was clear what all was about.
 
 # Feedback
 
@@ -25,7 +31,6 @@ The day of the week and hour have a relationship with the number of homicides. M
 districst turn red when the night starts in Thursday Friday and Saturday. 
 What do you think is the main takeaway from this visualization?
 The main takeaway was to see the districts and the number of homicides together.
-
 
 Nour Galaby say:
 I had hard time telling what was it about... what does those numbers mean 0-4, 4-8 ???
