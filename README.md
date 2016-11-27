@@ -11,12 +11,13 @@ most of the homicides in the dataset occur.
 
 When I first did it, it wasn't very clear what the visualization was about, so I added some text
 with a brief explanation of the dataset. The problem was that with the single coloplett map,
-I couldn't show a clear finding of the data to the viewer. 
+I couldn't show a clear finding of the data to the viewer. I tried to make an animation,
+showing the days and hours when the city had more homicides, however the animation wasn't that
+good to remind the viewer which places and hours had more homicides in the sample.
 
-The idea was to let people interact with the buttons to understand how homicides are
-distribute across districts in Bogota and depending of the day and hour of the week.
-I wanted to have a visualization with litle or no text, I wanted the map to be
-self explained so no need to the viewer to read lots of text.
+Finally I did an animation showing how homicides were distributed across the day of the
+week and the hour. I also added a bar graph showing were and when most of the homicides occur in
+the sample. 
 
 # Feedback
 
@@ -59,6 +60,7 @@ I hope this is helpful and I'm looking forward to the next iteration of this viz
 http://stackoverflow.com/questions/19320835/d3-js-how-to-combine-2-datasets-in-order-to-create-a-map-and-show-values-on-mou
 http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html	 
 http://stackoverflow.com/questions/14492284/center-a-map-in-d3-given-a-geojson-object
+http://www.phloxblog.in/create-group-chart-d3/
 
 ## Response
 https://plus.google.com/u/0/103860754776181151911
