@@ -304,4 +304,3 @@ play.append('text')
 	.attr('heigth', ls_h)
 	.text('Play');
 d3.json('localidades_bogota.geojson', draw);
-startAnimation(1000)

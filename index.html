@@ -8,24 +8,23 @@
 		<LINK href="mapsStyle.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
+		<h1><blockquote>To shut one's eyes to half of life that
+			one may live securely is as though
+			one blinded oneself that one might walk with
+			more safety in a land of pit and precipice.
+		</blockquote></h1>
+		<h1><blockquote>Oscar Wilde</blockquote></h1>
 		<div class="grid" >
-
-			<div class ="row" >
-				<div class="col-7">
-					<h1><blockquote>To shut one's eyes to half of life that
-						one may live securely is as though
-						one blinded oneself that one might walk with
-						more safety in a land of pit and precipice.
-					</blockquote></h1>
-					<h1><blockquote>Oscar Wilde</blockquote></h1>
-				</div>
-			</div>
-
+			
 			<div class="row" >
+				
 				<div id="svgHere"class="col-8">
 					<script src="functions.js"></script>
+					<script>playAll(1000)</script>
 				</div>
-				<div class="col-4">
+				
+				<div id="svgBar" class="col-4">
+					<script src="barExpl.js"></script>
 					<p class="desc">
 						This visualization show the map of 
 						Bogota D.C, Colombia and the total number of
@@ -34,16 +33,18 @@
 					</p>
 					<p class="desc">
 						The data was taken from the 
-						<a href='http://oasportal.policia.gov.co/imagenes_ponal/dijin/observatorio/cicri/cifras0.html'> police departemnt </a>
+						<a href='http://oasportal.policia.gov.co/
+								 imagenes_ponal/dijin/observatorio/
+								 cicri/cifras0.html'>
+							police departemnt </a>
 						webpage, for the years 2010 to 2015.
 					</p>
 				</div>
-			</div>
-
-		</div>
+				
+			</div> <!-- Close row -->
+		</div> <!-- Close Grid -->
 	</body>
 </html>
-
 
 <!--
 	 Reference

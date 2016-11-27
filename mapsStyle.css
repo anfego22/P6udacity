@@ -132,3 +132,17 @@ div.tooltip {
 .col-12 {
     width: 100%;
 }
+
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.x.axis path {
+  display: none;
+}
