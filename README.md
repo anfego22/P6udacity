@@ -1,23 +1,22 @@
 # Summary
-The map represent the urban area of Bogota D.C Colombia.
-It maps the number of homicides in a especifc area of the city, in a given day and hour.
-The data consist of the number of homicides during 2010 to 2015 in Bogota D.C.
+The data consist of the number of homicides during 2010 to 2015 in Bogota D.C. I describe
+some tendencys in the period and show some observations of how homicides are distributed
+by weapon, time of the day and zone in Bogota D.C.
 
 # Design
 
-I wanted to have a visualization showing the map of Bogota D.C color by the number of homicides,
-in a given day and in a given hour. I wanted the viewer to know the regions and the hours were
-most of the homicides in the dataset occur.
+I show the map of Bogota D.C color by the number of homicides in a given day at a given hour.
+I wanted the viewer to knew the regions and the hours were most of the homicides in the dataset occur.
 
-When I first did it, it wasn't very clear what the visualization was about, so I added some text
-with a brief explanation of the dataset. The problem was that with the single coloplett map,
-I couldn't show a clear finding of the data to the viewer. I tried to make an animation,
-showing the days and hours when the city had more homicides, however the animation wasn't that
-good to remind the viewer which places and hours had more homicides in the sample.
+When I first did it, it wasn't very clear what the visualization was about, so I added some text with a
+brief explanation of the dataset. The problem was that with the single choroplett map the finding of
+the data weren't clear to the viewer. I tried to make an animation to overcome the proble,
+showing the days and hours when the city had more homicides, however the animation
+didn't accomplish the objective.
 
-Finally I did an animation showing how homicides were distributed across the day of the
-week and the hour. I also added a bar graph showing were and when most of the homicides occur in
-the sample. 
+Since the animation wasn't good to show the findings, I added more text to the visualization and more graphs explaining the dataset.
+The idea behind those graph was to introduce the viewer with this interesting dataset and show the
+final choroplett map with the homicides in Bogota D.C 
 
 # Feedback
 
