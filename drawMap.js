@@ -38,6 +38,9 @@ function draw(error, geo_data){
 		.data(geo_data.features)
 		.enter().append("path")
 		.attr("d", path)
+		.attr('stroke-width', 0.5)
+		.attr('stroke', 'gray')
+		.attr('fill', 'none')
 		.attr('id', function(d){
 			return d.properties.name;});
 		
@@ -49,6 +52,7 @@ function draw(error, geo_data){
 			return d[1];});
 		return [mLon, mLat];
 	};
+	
 	svg.selectAll(".place-label")
 		.data(geo_data.features)
 		.enter().append("text")
@@ -63,4 +67,5 @@ function draw(error, geo_data){
 				return d.properties.name;
 			}
 		});
+
 };

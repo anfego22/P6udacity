@@ -1,9 +1,3 @@
-var marginB = {top: 30, right: 20,
-			  bottom: 25, left: 150};
-var heightB = 500 - margin.top - margin.bottom;
-var widthB = 720 - margin.right - margin.left;
-
-
 // Create scales for the bar graph
 var y0 = d3.scale.ordinal()
     .rangeRoundBands([0, heightB], .1);
@@ -37,7 +31,9 @@ var svgBar = d3.select('#svgBar')
     .attr("transform", "translate(" + marginB.left + "," +
 		  marginB.top + ")");
 
- 
+// Space the groups
+var groupSpacing = 6;
+
 d3.csv("totalHomW.csv", function(error, data) {
 	if (error) throw error;
 	// This filter is done already in totalHomW.csv

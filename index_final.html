@@ -8,41 +8,64 @@
 		<LINK href="mapsStyle.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-		<h1><blockquote>To shut one's eyes to half of life that
+		<p class="title2">
+			Homicides at Bogota D.C
+		</p>
+		<p class="paragr">
+			In this visualization we show the number of homicides
+			between 2010 and 2015 in the city of Bogota D.C, Colombia.
+			The data was taken from the 
+			<a href='http://oasportal.policia.gov.co/
+					 imagenes_ponal/dijin/observatorio/
+					 cicri/cifras0.html'>
+				police department </a>
+			webpage.
+		</p>
+		<div id="svgLineP">
+			<script src="linePlot.js"></script>
+			<p class="paragr">
+				There is a drop in the mean of homicides at the start
+				of 2012, this could be due to the prohibition
+				of bearing guns, which was adopted in that period by
+				the local goverment.
+			</p>
+		</div>
+		<div id ="svgLineByWeap">
+			<script src="lineHomByWeap.js"></script>
+			<p class="paragr">
+				Firearms and knives are the most prevalent
+				type of weapons involved in homicides
+				in the city of Bogota D.C.
+			</p>
+		</div>
+		<div id ="svgHomByWeapHour">
+			<script src="barHomByWeap.js"></script>
+			<p class="paragr">
+				Homicides with firearms are greater than homicides with
+				knives for almost any hour in the day.
+				However between 0:00 to 8:00 the number of homicides
+				with firearms and knives are close to each others.
+		</div>
+		<div id="svgHere">
+			<p class="paragr">
+				Press the play button in the animation to see how
+				homicides had been conducted, in a given day at a
+				given hour of the day.It is commond in Bogota D.C to
+				consume alcohol during weekends and is possible that this
+				is one of the responsibles of the red spots on the map.
+			</p>
+			<script src="functions.js"></script>
+			<!--  <script>playAll(1000)</script> -->
+		</div>
+		<!--  <div id="svgBar"> -->
+		<!--  <script src="barExpl.js"></script>-->
+		<!--  </div>-->
+		<!--  <h1><blockquote>To shut one's eyes to half of life that
 			one may live securely is as though
 			one blinded oneself that one might walk with
 			more safety in a land of pit and precipice.
-		</blockquote></h1>
-		<h1><blockquote>Oscar Wilde</blockquote></h1>
-		<div class="grid" >
-			
-			<div class="row" >
-				
-				<div id="svgHere"class="col-8">
-					<script src="functions.js"></script>
-					<script>playAll(1000)</script>
-				</div>
-				
-				<div id="svgBar" class="col-4">
-					<script src="barExpl.js"></script>
-					<p class="desc">
-						This visualization show the map of 
-						Bogota D.C, Colombia and the total number of
-						homicides in a given day at a given
-						hour.
-					</p>
-					<p class="desc">
-						The data was taken from the 
-						<a href='http://oasportal.policia.gov.co/
-								 imagenes_ponal/dijin/observatorio/
-								 cicri/cifras0.html'>
-							police departemnt </a>
-						webpage, for the years 2010 to 2015.
-					</p>
-				</div>
-				
-			</div> <!-- Close row -->
-		</div> <!-- Close Grid -->
+			  </blockquote></h1>
+			  <h1><blockquote>Oscar Wilde</blockquote></h1>-->
 	</body>
 </html>
 

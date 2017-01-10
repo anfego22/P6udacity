@@ -61,6 +61,6 @@ http://stackoverflow.com/questions/19320835/d3-js-how-to-combine-2-datasets-in-o
 http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html	 
 http://stackoverflow.com/questions/14492284/center-a-map-in-d3-given-a-geojson-object
 http://www.phloxblog.in/create-group-chart-d3/
-
+http://stackoverflow.com/questions/27499347/how-to-add-space-between-bars-in-a-grouped-bar-chart-in-a-nvd3-grouped-multibar
 ## Response
 https://plus.google.com/u/0/103860754776181151911

@@ -1,6 +1,31 @@
-path {
-	fill : snow;
-	stroke-width: 0.5;
+.title2 {
+	font-family: times, serif;
+	font-size:24pt;
+	text-align:center;
+	font-weight:bold;
+}
+
+.paragr {
+	font-family: times, serif;
+	font-size:18pt;
+	text-align:justify;
+}
+
+body {
+	background-color: #fff;
+	width: 950px;
+	margin: 0 auto;
+}
+
+.yaxis .xaxis {
+	fill : none;
+	stroke-width: 2;
+	stroke: black;
+}
+
+.pathGrap {
+	fill : none;
+	stroke-width: 2;
 	stroke: gray;
 }
 blockquote, pre {
@@ -54,11 +79,6 @@ div.tooltip {
 .title {
 	font-size: 18px;
 	font-weight: bold;
-}
-
-.desc {
-	font-size: 16px;
-	font-family: Arial;
 }
 
 * {
@@ -134,16 +154,12 @@ div.tooltip {
     width: 100%;
 }
 
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+.line {
+	fill: none;
+	stroke-width:1.5;
 }
 
 .bar {
   fill: steelblue;
 }
 
-.x.axis path {
-  display: none;
-}

@@ -147,13 +147,15 @@ var HoraInt = ['[0-4)', '[4-8)', '[8-12)',
 			   '[12- 16)', '[16-20)', '[20-24)'];
 
 // Add title to explain each buttons
-d3.select('svg')
+d3.select('#svgHere')
+	.select('svg')
 	.append('text')
 	.attr('x', 150)
 	.attr('y', 25)
 	.attr('class', 'title')
 	.text('Time of Day (Hours)');
-d3.select('svg')
+d3.select('#svgHere')
+	.select('svg')
 	.append('text')
 	.attr('x', 10)
 	.attr('y', 25)
@@ -280,17 +282,19 @@ legend.append("text")
 		return (i*ls_h) + 49;})
 	.text(function(d, i){
 		return legend_labels[i]; });
-d3.select('svg')
+d3.select('#svgHere')
+	.select('svg')
 	.append('text')
 	.attr('x', width -150)
 	.attr('y', 25)
 	.attr('class', 'title')
 	.text('Homicides (#)');
-var play = d3.select('svg')
+var play = d3.select('#svgHere')
+	.select('svg')
 	.append('g')
 	.attr('transform', 'translate(0, 200)');
 play.append('rect')
-	.attr("width", 110)
+	.attr("width", 200)
 	.attr("height", ls_h)
 	.attr('class', 'rectangleP')
 	.on('click', function(d){
@@ -302,5 +306,34 @@ play.append('text')
 	.attr('fill', 'white')
 	.attr('width', ls_w)
 	.attr('heigth', ls_h)
-	.text('Play');
+	.text('Play a Given Day')
+	.on('click', function(d){
+		playMap(1000);
+	});
+
+var playAllrec = d3.select('#svgHere')
+	.select('svg')
+	.append('g')
+	.attr('transform', 'translate(0, 220)');
+
+playAllrec.append('rect')
+	.attr("width", 200)
+	.attr("height", ls_h)
+	.attr('class', 'rectangleP')
+	.on('click', function(d){
+		playAll(1000);
+	});
+
+playAllrec.append('text')
+	.attr('x', 20)
+	.attr('y', 15)
+	.attr('fill', 'white')
+	.attr('width', ls_w)
+	.attr('heigth', ls_h)
+	.text('Play all Days')
+	.on('click', function(d){
+		playAll(1000);
+	});
+
+
 d3.json('localidades_bogota.geojson', draw);
